@@ -67,7 +67,7 @@ function Nav() {
       </nav>
 
       <div
-        className={`${sideBar ? "translate-x-0 " : "translate-x-[200%]"} flex fixed w-full h-full bg-[#575353] flex-col transition-all duration-300`}
+        className={`${sideBar ? "translate-x-0 " : "translate-x-[200%] pointer-events-none"} flex fixed w-full h-full bg-[#575353] flex-col transition-all duration-300`}
       >
         <div className="flex justify-end mt-4 mr-5">
           <button onClick={() => setSideBar(false)} className="text-2xl">
