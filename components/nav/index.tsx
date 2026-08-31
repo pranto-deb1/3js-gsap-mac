@@ -1,4 +1,5 @@
 "use client";
+import { Constants } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -7,17 +8,11 @@ import { RxCross2 } from "react-icons/rx";
 
 function Nav() {
   const [sideBar, setSideBar] = useState(false);
-  const links = [
-    { label: "Store" },
-    { label: "Mac" },
-    { label: "iPhone" },
-    { label: "Watch" },
-    { label: "Vision" },
-    { label: "AirPods" },
-  ];
+  const links = Constants.navLinks;
+
   return (
     <header className="">
-      <nav className="flex justify-between px-5 md:px-0 md:justify-around w-full absolute top-4">
+      <nav className="flex bg-black/50 backdrop-blur-2xl justify-between px-5 md:px-0 md:justify-around w-full fixed pt-4 top-0">
         <div className="">
           <Image
             src={"/logo.svg"}
