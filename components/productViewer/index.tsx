@@ -5,7 +5,6 @@ import StudioLights from "../models/studio-lights";
 import ModelSwitcher from "./modelSwitcher";
 import { useMediaQuery } from "react-responsive";
 import { useGlobalStore } from "@/utils/global";
-import { AmbientLight } from "three";
 
 function ProductViewer() {
   const color = useGlobalStore((state) => state.color);
@@ -16,11 +15,13 @@ function ProductViewer() {
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
   return (
-    <section className="min-h-screen">
-      <h2 className="text-5xl text-center font-semibold">Take a closer look</h2>
+    <section id="product-viewer" className="min-h-screen mt-40">
+      <h2 className="text-3xl ml-10 md:ml-0 md:text-5xl md:text-center font-semibold">
+        Take a closer look
+      </h2>
 
       <div className="h-125 md:h-175 ">
-        <Canvas camera={{fov: 30}}>
+        <Canvas camera={{ fov: 30 }}>
           <ModelSwitcher size={size} isMobile={isMobile} />
           <StudioLights />
         </Canvas>
@@ -28,8 +29,8 @@ function ProductViewer() {
 
       <div className="controls flex items-center flex-col">
         <p>
-          MacBook Pro {size}” in{" "}
-          {color === "#171717" ? "Space Black" : "Silver"}
+          MacBook Pro {size}” in
+          {color === "#171717" ? " Space Black" : " Silver"}
         </p>
 
         <div className="flex justify-center gap-5 mt-5 w-50 h-12.5">

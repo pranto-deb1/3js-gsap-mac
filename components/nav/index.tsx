@@ -11,7 +11,7 @@ function Nav() {
   const links = Constants.navLinks;
 
   return (
-    <header className="">
+    <header className="z-100">
       <nav className="flex bg-black/50 backdrop-blur-2xl justify-between px-5 md:px-0 md:justify-around w-full fixed pt-4 top-0">
         <div className="">
           <Image
