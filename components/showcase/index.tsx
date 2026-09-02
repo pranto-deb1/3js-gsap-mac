@@ -5,11 +5,12 @@ import React from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
 function Showcase() {
-  const isTablet = useMediaQuery({ query: "max-width: 1024px" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
   useGSAP(() => {
     if (!isTablet) {
@@ -29,11 +30,13 @@ function Showcase() {
         {
           scale: 56,
           transformOrigin: "center center",
+          force3D: false, // 3D Layer Force বন্ধ করা হলো যাতে ইমেজ গ্লিচ না করে
         },
         {
           scale: 1.1,
           ease: "power1.inOut",
-        },
+          force3D: false,
+        }
       );
     }
   }, [isTablet]);
@@ -50,13 +53,14 @@ function Showcase() {
           playsInline
           className="w-screen max-h-screen object-cover"
         />
-        {/* mask */}
-        <div className="mask absolute top-0 left-0  h-full w-full">
+        
+        {/* mask - Hardware Acceleration Class সরিয়ে দেওয়া হয়েছে */}
+        <div className="mask absolute top-0 left-0 h-full w-full pointer-events-none">
           <Image
             src={"/mask-logo.svg"}
             width={1200}
             height={1200}
-            alt=""
+            alt="Mask Logo"
             className="w-full h-full object-cover"
             priority
           />
@@ -64,7 +68,7 @@ function Showcase() {
       </div>
 
       {/* content */}
-      <div className="content flex flex-col md:flex-row gap-8 lg:gap-20 mx-auto w-fit text-gray-400 px-4 sm:px-6 md:px-0">
+      <div className="content flex flex-col md:flex-row gap-8 lg:gap-20 mx-auto w-fit text-gray-400 px-4 sm:px-6 md:px-0 mt-10">
         <div className="flex-1 max-w-[400px]">
           <h2 className="text-4xl sm:text-5xl lg:text-[70px] text-white leading-tight lg:leading-17 w-fit">
             Rocket chip.
@@ -93,7 +97,7 @@ function Showcase() {
             </p>
 
             <p className="mt-2">
-              <Link href={""} className="hover:underline text-blue-500">
+              <Link href={"#"} className="hover:underline text-blue-500">
                 Learn more about Apple Intelligence
               </Link>
             </p>
