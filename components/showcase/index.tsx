@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { IoIosArrowDropright } from "react-icons/io";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,7 +37,7 @@ function Showcase() {
           scale: 1.1,
           ease: "power1.inOut",
           force3D: false,
-        }
+        },
       );
     }
   }, [isTablet]);
@@ -53,7 +54,7 @@ function Showcase() {
           playsInline
           className="w-screen max-h-screen object-cover"
         />
-        
+
         {/* mask - Hardware Acceleration Class সরিয়ে দেওয়া হয়েছে */}
         <div className="mask absolute top-0 left-0 h-full w-full pointer-events-none">
           <Image
@@ -97,8 +98,8 @@ function Showcase() {
             </p>
 
             <p className="mt-2">
-              <Link href={"#"} className="hover:underline text-blue-500">
-                Learn more about Apple Intelligence
+              <Link href={"#"} className="hover:underline text-blue-500 flex gap-1 items-center">
+                Learn more about Apple Intelligence <IoIosArrowDropright />
               </Link>
             </p>
           </div>
@@ -125,5 +126,7 @@ function Showcase() {
     </section>
   );
 }
+
+
 
 export default Showcase;

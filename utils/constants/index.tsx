@@ -26,14 +26,62 @@ const noChangeParts = [
   "Object_10",
 ];
 
-const performanceImages = [
-  { id: "p1", src: "/performance1.png" },
-  { id: "p2", src: "/performance2.png" },
-  { id: "p3", src: "/performance3.png" },
-  { id: "p4", src: "/performance4.png" },
-  { id: "p5", src: "/performance5.jpg" },
-  { id: "p6", src: "/performance6.png" },
-  { id: "p7", src: "/performance7.png" },
+export interface PerformanceImage {
+  id: string;
+  src: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+  transform?: string;
+}
+
+export const performanceImages: PerformanceImage[] = [
+  { 
+    id: "p1", 
+    src: "/performance1.png", 
+    left: "5%", 
+    bottom: "10%", 
+    transform: "rotate(-5deg)" 
+  },
+  { 
+    id: "p2", 
+    src: "/performance2.png", 
+    right: "10%", 
+    bottom: "15%", 
+    transform: "rotate(3deg)" 
+  },
+  { 
+    id: "p3", 
+    src: "/performance3.png", 
+    left: "15%", 
+    bottom: "20%", 
+    transform: "scale(1.1)" 
+  },
+  { 
+    id: "p4", 
+    src: "/performance4.png", 
+    right: "5%", 
+    bottom: "25%", 
+    transform: "rotate(-2deg)" 
+  },
+  { 
+    id: "p5", 
+    src: "/performance5.jpg" 
+  },
+  { 
+    id: "p6", 
+    src: "/performance6.png", 
+    left: "25%", 
+    bottom: "30%", 
+    transform: "translateY(-10px)" 
+  },
+  { 
+    id: "p7", 
+    src: "/performance7.png", 
+    right: "20%", 
+    bottom: "35%", 
+    transform: "scale(0.9)" 
+  },
 ];
 
 const performanceImgPositions = [
