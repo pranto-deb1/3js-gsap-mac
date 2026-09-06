@@ -11,6 +11,7 @@ import { useGlobalStore } from "@/utils/global";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,11 +100,11 @@ const ModelScroll = () => {
 
 function Features() {
   return (
-    <section id="features" className="relative mt-40 mb-40 min-h-[300vh]">
+    <section id="features" className="relative mt-40 mb-40 ">
       {/* Container wrapper for pinning */}
       <div
         id="pin-container"
-        className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden"
+        className="sticky top-0 h-screen w-full flex items-center justify-center"
       >
         <h2 className="absolute top-10 text-[40px] md:text-[65px] text-center font-semibold z-10">
           See it all in a new light.
@@ -125,6 +126,7 @@ function Features() {
               key={feature.id}
               className={`box box${index + 1} absolute p-4 bg-white/10 rounded-xl  backdrop-blur-md max-w-xs ${feature.styles}`}
             >
+              <Image src={feature.icon} height={50} width={50} alt={feature.text}/>
               <span className="font-bold block">{feature.highlight}</span>
               <p className="text-sm">{feature.text}</p>
             </div>
