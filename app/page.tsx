@@ -1,3 +1,4 @@
+import Features from "@/components/features";
 import Hero from "@/components/hero";
 import Performance from "@/components/performence";
 import ProductViewer from "@/components/productViewer";
@@ -9,7 +10,8 @@ export default function Home() {
       <Hero />
       <ProductViewer />
       <Showcase />
-      <Performance />
+      {/* <Performance /> */}
+      <Features />
     </div>
   );
 }

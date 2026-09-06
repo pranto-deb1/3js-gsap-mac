@@ -34,7 +34,7 @@ function Performance() {
               start: "top 80%",
               invalidateOnRefresh: true,
             },
-          }
+          },
         );
       });
 
@@ -77,14 +77,14 @@ function Performance() {
           toState.left = "auto";
         }
 
-        gsap.fromTo(selector, fromState, toState);
+        gsap.to(selector,  toState);
       });
     },
-    { scope: sectionRef, dependencies: [isMobile] }
+    { scope: sectionRef, dependencies: [isMobile] },
   );
 
   return (
-    <section ref={sectionRef} className="mt-40 mb-[100vh] w-[70vw] mx-auto">
+    <section ref={sectionRef} className="mt-40 max-w-screen overflow-hidden">
       <h2 className="text-center text-3xl font-semibold">
         Next-level graphics <br /> performance. Game on.
       </h2>
@@ -100,15 +100,15 @@ function Performance() {
             alt="Performance"
             className={`absolute will-change-transform ${
               image.id === "p5"
-                ? "left-[50%] translate-x-[-50%] w-lg bottom-50"
-                : "w-sm"
+                ? "left-[50%] translate-x-[-50%] w-3xl bottom-50 z-10"
+                : "w-lg z-20"
             }`}
-            // style={{
-            //   left: image.left,
-            //   right: image.right,
-            //   bottom: image.bottom,
-            //   transform: image.transform,
-            // }}
+            style={{
+              left: image.left,
+              right: image.right,
+              bottom: image.bottom,
+              transform: image.transform,
+            }}
           />
         ))}
       </div>
