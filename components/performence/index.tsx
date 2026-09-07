@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMediaQuery } from "react-responsive";
+import OpacityWrapper from "@/utils/opacityWrapper";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,60 +78,62 @@ function Performance() {
           toState.left = "auto";
         }
 
-        gsap.to(selector,  toState);
+        gsap.to(selector, toState);
       });
     },
     { scope: sectionRef, dependencies: [isMobile] },
   );
 
   return (
-    <section ref={sectionRef} className="mt-40 max-w-screen overflow-hidden">
-      <h2 className="text-center text-3xl font-semibold">
-        Next-level graphics <br /> performance. Game on.
-      </h2>
+    <OpacityWrapper>
+      <section ref={sectionRef} className="mt-40 max-w-screen overflow-hidden">
+        <h2 className="text-center text-3xl font-semibold">
+          Next-level graphics <br /> performance. Game on.
+        </h2>
 
-      <div className="wrapper relative h-200">
-        {Constants.performanceImages.map((image) => (
-          <Image
-            id={image.id}
-            key={image.id}
-            src={image.src}
-            width={500}
-            height={500}
-            alt="Performance"
-            className={`absolute will-change-transform ${
-              image.id === "p5"
-                ? "left-[50%] translate-x-[-50%] w-3xl bottom-50 z-10"
-                : "w-lg z-20"
-            }`}
-            style={{
-              left: image.left,
-              right: image.right,
-              bottom: image.bottom,
-              transform: image.transform,
-            }}
-          />
-        ))}
-      </div>
+        <div className="wrapper relative h-200">
+          {Constants.performanceImages.map((image) => (
+            <Image
+              id={image.id}
+              key={image.id}
+              src={image.src}
+              width={500}
+              height={500}
+              alt="Performance"
+              className={`absolute will-change-transform ${
+                image.id === "p5"
+                  ? "left-[50%] translate-x-[-50%] w-3xl bottom-50 z-10"
+                  : "w-lg z-20"
+              }`}
+              style={{
+                left: image.left,
+                right: image.right,
+                bottom: image.bottom,
+                transform: image.transform,
+              }}
+            />
+          ))}
+        </div>
 
-      <div className="content max-w-166 text-center text-gray-400 mx-auto text-xl mt-10">
-        <p>
-          Run graphics-intensive workflows with a responsiveness that keeps up
-          with your imagination. The M4 family of chips features a GPU with a
-          second-generation hardware-accelerated ray tracing engine that renders
-          images faster, so{" "}
-          <span className="text-white">
-            gaming feels more immersive and realistic than ever.
-          </span>
-        </p>
+        <div className="content max-w-166 text-center text-gray-400 mx-auto text-xl mt-10">
+          <p>
+            Run graphics-intensive workflows with a responsiveness that keeps up
+            with your imagination. The M4 family of chips features a GPU with a
+            second-generation hardware-accelerated ray tracing engine that
+            renders images faster, so{" "}
+            <span className="text-white">
+              gaming feels more immersive and realistic than ever.
+            </span>
+          </p>
 
-        <p className="mt-5">
-          And Dynamic Caching optimizes fast on-chip memory to dramatically
-          increase average GPU utilization — driving a huge performance boost
-          for the most demanding pro apps and games.
-        </p>
-      </div>
-    </section>
+          <p className="mt-5">
+            And Dynamic Caching optimizes fast on-chip memory to dramatically
+            increase average GPU utilization — driving a huge performance boost
+            for the most demanding pro apps and games.
+          </p>
+        </div>
+      </section>
+    </OpacityWrapper>
   );
 }
 
