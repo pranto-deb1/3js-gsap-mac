@@ -11,7 +11,7 @@ export default function Home() {
       <Hero />
       <ProductViewer />
       <Showcase />
-      {/* <Performance /> */}
+      <Performance />
       <Features />
       <Highlights />
     </div>

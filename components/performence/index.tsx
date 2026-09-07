@@ -12,7 +12,7 @@ import OpacityWrapper from "@/utils/opacityWrapper";
 gsap.registerPlugin(ScrollTrigger);
 
 function Performance() {
-  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 1023px)" });
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -20,7 +20,7 @@ function Performance() {
       const sectionEl = sectionRef.current;
       if (!sectionEl) return;
 
-      // ১. প্যারাগ্রাফ টেক্সট অ্যানিমেশন
+      // ১. paragraph text animation
       gsap.utils.toArray<HTMLElement>(".content p").forEach((p) => {
         gsap.fromTo(
           p,
@@ -32,28 +32,20 @@ function Performance() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: p,
-              start: "top 80%",
+              start: "top 85%",
               invalidateOnRefresh: true,
             },
-          },
+          }
         );
       });
 
       if (isMobile) return;
 
-      // ২. ইমেজ ফ্লাই-ইন অ্যানিমেশন (GPU Accelerated)
+      // ২. image fly in animation (Desktop / Large Screens)
       Constants.performanceImgPositions.forEach((item) => {
         if (item.id === "p5") return;
 
         const selector = `#${item.id}`;
-
-        const fromState = {
-          opacity: 0,
-          top: "50%",
-          left: "50%",
-          xPercent: -50,
-          yPercent: -50,
-        };
 
         const toState: gsap.TweenVars = {
           opacity: 1,
@@ -64,7 +56,7 @@ function Performance() {
           clearProps: "top,transform",
           scrollTrigger: {
             trigger: sectionEl,
-            start: "top 60%", // স্ক্রোলের পারফেক্ট পজিশনে ট্রিগার করার জন্য
+            start: "top 60%",
             invalidateOnRefresh: true,
           },
         };
@@ -80,53 +72,74 @@ function Performance() {
 
         gsap.to(selector, toState);
       });
+
+      ScrollTrigger.refresh();
     },
-    { scope: sectionRef, dependencies: [isMobile] },
+    { scope: sectionRef, dependencies: [isMobile] }
   );
 
   return (
     <OpacityWrapper>
-      <section ref={sectionRef} className="mt-40 max-w-screen overflow-hidden">
-        <h2 className="text-center text-3xl font-semibold">
-          Next-level graphics <br /> performance. Game on.
+      <section
+        ref={sectionRef}
+        className="mt-16 sm:mt-24 md:mt-32 lg:mt-40 max-w-full overflow-hidden px-4 sm:px-6 lg:px-8"
+      >
+
+        <h2 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight max-w-4xl mx-auto">
+          Next-level graphics <br className="hidden sm:inline" /> performance. Game on.
         </h2>
 
-        <div className="wrapper relative h-200">
+
+        <div className="wrapper relative my-8 lg:my-0 lg:h-[500px] xl:h-[600px] flex flex-wrap justify-center items-center gap-4 lg:block">
           {Constants.performanceImages.map((image) => (
-            <Image
-              id={image.id}
+            <div
               key={image.id}
-              src={image.src}
-              width={500}
-              height={500}
-              alt="Performance"
-              className={`absolute will-change-transform ${
-                image.id === "p5"
-                  ? "left-[50%] translate-x-[-50%] w-3xl bottom-50 z-10"
-                  : "w-lg z-20"
+              id={image.id}
+              className={`transition-all duration-300 ${
+                isMobile
+                  ? "relative w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px] mx-auto"
+                  : `absolute will-change-transform ${
+                      image.id === "p5"
+                        ? "left-1/2 -translate-x-1/2 w-full max-w-3xl bottom-12 z-10"
+                        : "w-full max-w-md z-20"
+                    }`
               }`}
-              style={{
-                left: image.left,
-                right: image.right,
-                bottom: image.bottom,
-                transform: image.transform,
-              }}
-            />
+              style={
+                !isMobile
+                  ? {
+                      left: image.left,
+                      right: image.right,
+                      bottom: image.bottom,
+                      transform: image.transform,
+                    }
+                  : undefined
+              }
+            >
+              <Image
+                src={image.src}
+                width={500}
+                height={500}
+                alt="Performance"
+                className="w-full h-auto object-contain rounded-lg"
+                priority={image.id === "p5"}
+              />
+            </div>
           ))}
         </div>
 
-        <div className="content max-w-166 text-center text-gray-400 mx-auto text-xl mt-10">
-          <p>
+
+        <div className="content max-w-3xl text-center text-gray-400 mx-auto text-base sm:text-lg md:text-xl mt-8 sm:mt-12 lg:mt-16 px-2">
+          <p className="leading-relaxed">
             Run graphics-intensive workflows with a responsiveness that keeps up
             with your imagination. The M4 family of chips features a GPU with a
             second-generation hardware-accelerated ray tracing engine that
             renders images faster, so{" "}
-            <span className="text-white">
+            <span className="text-white font-medium">
               gaming feels more immersive and realistic than ever.
             </span>
           </p>
 
-          <p className="mt-5">
+          <p className="mt-4 sm:mt-6 leading-relaxed">
             And Dynamic Caching optimizes fast on-chip memory to dramatically
             increase average GPU utilization — driving a huge performance boost
             for the most demanding pro apps and games.
