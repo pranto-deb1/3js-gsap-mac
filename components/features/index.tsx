@@ -89,7 +89,7 @@ const ModelScroll = () => {
       >
         <MacBookModel
           snap={true}
-          scale={isMobile ? 0.05 : 0.04}
+          scale={isMobile ? 0.02 : 0.04}
           position={[0, -0.6, 0]}
           rotation-x={0.2}
         />
@@ -100,7 +100,7 @@ const ModelScroll = () => {
 
 function Features() {
   return (
-    <section id="features" className="relative mt-40 mb-40 ">
+    <section id="features" className="relative mt-40">
       {/* Container wrapper for pinning */}
       <div
         id="pin-container"
@@ -115,7 +115,7 @@ function Features() {
           <Canvas id="f-canvas" camera={{ fov: 20 }}>
             <StudioLights />
             <ModelScroll />
-            <OrbitControls enableZoom={false} />
+            {/* <OrbitControls enableZoom={false} /> */}
           </Canvas>
         </div>
 

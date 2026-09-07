@@ -25,7 +25,7 @@ function Nav() {
 
         <div className="md:flex gap-4 hidden ">
           {links.map((link, index) => (
-            <Link key={index} href={link.label}>
+            <Link key={index} href={link.link}>
               {link.label}
             </Link>
           ))}

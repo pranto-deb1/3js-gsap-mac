@@ -25,3 +25,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.highlights-before::before { /* অথবা ::after */
+  content: "";
+  position: absolute;
+  z-index: -1; /* মূল কন্টেন্ট এবং ব্যাকগ্রাউন্ডের নিচে পাঠানোর জন্য */
+  /* বাকি স্টাইল... */
+}
